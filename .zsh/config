@@ -1,0 +1,27 @@
+# Human config
+
+if [[ -e /home/human/.zsh/alias ]]; then
+  source /home/human/.zsh/alias
+fi
+
+if [[ -e /home/human/.zsh/functions ]]; then
+  source /home/human/.zsh/functions
+fi
+
+if [[ -e /home/human/.zsh/functions ]]; then
+  source /home/human/.zsh/calc.plugin.zsh
+fi
+
+export JAVA_HOME="/usr/lib/jvm/default"
+
+export PATH="$PATH:/var/lib/snapd/snap/bin:/home/human/bin:/home/human/.config/composer/vendor/bin"
+
+export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f %% '
+
+export LS_COLORS="di=38;5;33:.env=01;38;5;0;48;5;208:.env,*=01;38;5;0;48;5;208:.*rc=38;5;85"
+export EXA_COLORS="da=38;5;29:ur=38;5;40:uw=38;5;220:ux=38;5;9:gr=38;5;40:gw=38;5;220:gx=38;5;9:tr=38;5;40:tw=38;5;220:tx=38;5;9:su=38;5;9:sf=38;5;9:xa=38;5;9:uu=38;5;15:un=38;5;214:gu=38;5;15:gn=38;5;214:ga=38;5;10:gm=38;5;21:gd=38;5;9:ga=48;5;10;38;5;0:gm=48;5;21:gd=48;5;9;38;5;0:sb=38;5;9"
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+clr

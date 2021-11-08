@@ -7,6 +7,7 @@ alias lt='exa -lagm --icons --group-directories-first --color always --tree -L3'
 alias cpv='rsync -r --progress --inplace --verbose'
 alias scpv='sudo rsync -r --progress --inplace --verbose'
 alias lss='sudo ls -la'
+alias sysupdate='sudo apt update -y && sudo apt upgrade -y'
 
 alias python='python3'
 
@@ -26,3 +27,5 @@ alias krestart="kquitapp5 plasmashell && kstart5 plasmashell"
 #alias krestart="kwin_x11 --replace"
 
 alias setclip="xclip -sel c < " 
+
+failpass='faillock --user $USER --reset'

@@ -10,7 +10,7 @@ fi
 
 export JAVA_HOME="/usr/lib/jvm/default"
 
-export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/opt/firefox/firefox:/snap/bin/"
+export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin"
 
 export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f %% '
 

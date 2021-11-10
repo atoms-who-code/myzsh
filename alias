@@ -29,3 +29,5 @@ alias krestart="kquitapp5 plasmashell && kstart5 plasmashell"
 alias setclip="xclip -sel c < " 
 
 failpass='faillock --user $USER --reset'
+
+setPerm='sudo chmod -R u+rwX,go+rX,go-w '

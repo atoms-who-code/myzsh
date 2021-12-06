@@ -10,9 +10,22 @@ fi
 
 export JAVA_HOME="/usr/lib/jvm/default"
 
-export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin:/usr/local/share:/opt/homebrew/bin:/opt/local/bin"
 
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats ' (%b)'
+
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+
+# export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f${vcs_info_msg_0_} %% '
 export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f %% '
+export RPROMPT="%F{240}\${vcs_info_msg_0_}"
 
 export CASE_SENSITIVE="false"
 
@@ -20,8 +33,8 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down

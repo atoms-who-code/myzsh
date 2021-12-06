@@ -35,6 +35,11 @@ umountrpi(){
     echo "RPI4 Mounted"
 }
 
+mountutm-b(){
+    sshfs -o allow_other d_pereda@192.168.64.4:/home/d_pereda /Volumes/utm-ubuntu -o IdentityFile=/Users/d_pereda/.ssh/utm-ubuntu -p 22 && cd /Users/d_pereda/
+    echo "RPI4 Mounted"
+}
+
 function dock-stop(){
     docker stop $(docker ps -a -q) 
 }
@@ -110,3 +115,18 @@ git-up(){
     git status;
 }
 
+function git_branch_name()
+{
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo '- ('$branch')'
+  fi
+}
+
+
+copy(){ 
+    cat $@ | pbcopy
+}

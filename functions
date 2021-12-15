@@ -104,7 +104,7 @@ git-up(){
     git add .;
 
     if [ -n "$1" ]; then
-        echo "--------------- git commit -m "$@" ---------------";
+        echo "--------------- git commit -m \"$@\" ---------------";
         git commit -m "$@";
     else
         echo "--------------- git commit -m 'Quick Fix' ---------------";

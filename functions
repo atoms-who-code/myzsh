@@ -100,22 +100,22 @@ dockTerm(){
 
 
 git-up(){
-    echo "\n\n--------------- add . ---------------";
+    echo "\n--------------- add . ---------------";
     git add .;
 
     if [ -n "$1" ]; then
-        echo "\n\n--------------- git commit -m \"$@\" ---------------";
+        echo "\n--------------- git commit -m \"$@\" ---------------";
         git commit -m "$@";
     else
-        echo "\n\n--------------- git commit -m 'Quick Fix' ---------------";
+        echo "\n--------------- git commit -m 'Quick Fix' ---------------";
         git commit -m "Quick Fix";
     fi
 
-    echo "\n\n--------------- git pull ---------------";
+    echo "\n--------------- git pull ---------------";
     git pull;
-    echo "\n\n--------------- git push ---------------";
+    echo "\n--------------- git push ---------------";
     git push;
-    echo "\n\n--------------- git status ---------------";
+    echo "\n--------------- git status ---------------";
     git status;
 }
 

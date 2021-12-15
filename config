@@ -10,7 +10,7 @@ fi
 
 export JAVA_HOME="/usr/lib/jvm/default"
 
-export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin:/usr/local/share:/opt/homebrew/bin:/opt/local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin:/usr/local/share:/opt/homebrew/bin:/opt/local/bin:/opt/homebrew/opt/php@8.0/bin"
 
 
 # Load version control information

@@ -45,3 +45,4 @@ alias ubu-serv='qemu-system-aarch64 \
     -vga none -device ramfb \
     -device usb-ehci -device usb-kbd -device usb-mouse -usb \
     -monitor stdio'
+

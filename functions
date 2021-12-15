@@ -1,7 +1,7 @@
 clr(){
     clear
     echo "Happy code, "$USER"\n"
-    cal 
+    cal
     echo ""
     date
 }
@@ -17,15 +17,15 @@ find-g(){
 find-l(){
     find ./ -iname "$@" 2>/dev/null
 }
-find-d(){ 
+find-d(){
     find $1 -iname "$@" 2>/dev/null
 }
-find-t(){ 
+find-t(){
     find "$@" 2>/dev/null
 }
 
 mountrpi(){
-    sshfs -o allow_other human@10.42.0.100:/home/human /mnt/rpi4 -o IdentityFile=/home/human/.ssh/rpi4 -p 8908 && cd /mnt/rpi4 
+    sshfs -o allow_other human@10.42.0.100:/home/human /mnt/rpi4 -o IdentityFile=/home/human/.ssh/rpi4 -p 8908 && cd /mnt/rpi4
     echo "RPI4 Mounted"
 }
 
@@ -41,7 +41,7 @@ mountutm-b(){
 }
 
 function dock-stop(){
-    docker stop $(docker ps -a -q) 
+    docker stop $(docker ps -a -q)
 }
 
 function dock-clean(){
@@ -49,18 +49,18 @@ function dock-clean(){
     docker container prune -f
     docker network prune -f
 
-    if [ "$1" = "all" ]; then    
-        docker rmi $(docker images -a -q)    
+    if [ "$1" = "all" ]; then
+        docker rmi $(docker images -a -q)
     fi
 }
 
 git-auth(){
     if [ -n "$1" ]; then
         eval `ssh-agent`
-        if  [[ "$1" == "git"  ]]; then        
+        if  [[ "$1" == "git"  ]]; then
             ssh-add /home/human/.ssh/git
         fi
-        if  [[ "$1" == "bit"  ]]; then        
+        if  [[ "$1" == "bit"  ]]; then
             ssh-add /home/human/.ssh/bitbucketbb
         fi
     else
@@ -78,7 +78,7 @@ filePipes(){
 }
 
 mount-bbm-client(){
-    sshfs -o allow_other ubuntu@34.203.201.101:/home/ubuntu/secure_client_backend /mnt/bbm-client-area -o IdentityFile=/home/human/.ssh/bbm-development.pem -p 22 && cd /mnt/bbm-client-area 
+    sshfs -o allow_other ubuntu@34.203.201.101:/home/ubuntu/secure_client_backend /mnt/bbm-client-area -o IdentityFile=/home/human/.ssh/bbm-development.pem -p 22 && cd /mnt/bbm-client-area
 }
 
 
@@ -100,18 +100,22 @@ dockTerm(){
 
 
 git-up(){
+    echo "--------------- add . ---------------";
     git add .;
 
     if [ -n "$1" ]; then
+        echo "--------------- git commit -m "$@" ---------------";
         git commit -m "$@";
     else
+        echo "--------------- git commit -m 'Quick Fix' ---------------";
         git commit -m "Quick Fix";
     fi
 
+    echo "--------------- git pull ---------------";
     git pull;
-    echo "\n\n";
+    echo "\n\n--------------- git push ---------------";
     git push;
-    echo "\n\n";
+    echo "\n\n--------------- git status ---------------";
     git status;
 }
 
@@ -127,6 +131,6 @@ function git_branch_name()
 }
 
 
-copy(){ 
+copy(){
     cat $@ | pbcopy
 }

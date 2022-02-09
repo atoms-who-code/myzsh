@@ -134,3 +134,40 @@ function git_branch_name()
 copy(){
     cat $@ | pbcopy
 }
+
+from-develop(){
+    echo "\n--------------- git stash ---------------" &&
+    git stash &&
+    echo "\n--------------- git checkout develop ---------------" &&
+    git checkout develop &&
+    echo "\n--------------- git pull ---------------" &&
+    git pull &&
+    echo "\n--------------- git checkout -f $@ ---------------" &&
+    git checkout -f $@ &&
+    echo "\n--------------- git pull ---------------" &&
+    git pull &&
+    echo "\n--------------- git merge develop ---------------" &&
+    git merge develop;
+}
+
+deploy-version () {
+	echo "\n--------------- git fetch ---------------" &&
+    git fetch &&
+    echo "\n--------------- git checkout -f release/$@ ---------------" &&
+    git checkout -f release/$@ &&
+    echo "\n--------------- git pull ---------------" &&
+    git pull &&
+    echo "\n--------------- npm i ---------------" &&
+    npm i &&
+    echo "\n--------------- composer u ---------------" &&
+    composer u &&
+    echo "\n--------------- composer i ---------------" &&
+    composer i &&
+    echo "\n--------------- npm run prod ---------------" &&
+    npm run prod &&
+    echo "\n--------------- php artisan optimize ---------------" &&
+    php artisan optimize &&
+    echo "\n--------------- php migrate ---------------" &&
+    php artisan migrate
+}
+

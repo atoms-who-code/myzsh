@@ -44,6 +44,15 @@ bindkey "^[[3;5~" kill-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+bindkey "^[[1;5E" beginning-of-line
+bindkey "^[[1;5F" end-of-line
+
+bindkey "^[[1;5G" backward-kill-line
+bindkey "^[[1;5H" kill-line
+
+bindkey "^[[1;5J" kill-whole-line
+
+
 
 
 

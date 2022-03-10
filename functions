@@ -174,8 +174,8 @@ deploy-version () {
 deploy-branch(){
     echo "\n--------------- git fetch ---------------" &&
     git fetch &&
-    echo "\n--------------- git checkout -f $@---------------" &&
-    git checkout -f $@ &&
+    echo "\n--------------- git checkout -f $1 ---------------" &&
+    git checkout -f $1 &&
     echo "\n--------------- git pull ---------------" &&
     git pull &&
     echo "\n--------------- npm i ---------------" &&
@@ -186,9 +186,35 @@ deploy-branch(){
     composer i &&
     echo "\n--------------- npm run prod ---------------" &&
     npm run prod &&
-    echo "\n--------------- php artisan optimize ---------------" &&
-    php artisan optimize &&
-    echo "\n--------------- php migrate ---------------" &&
-    php artisan migrate
+
+    if [ -n "$2" ]; then
+        echo "\n--------------- docker exec -it $2 php artisan optimize ---------------" &&
+        docker exec -it $2 php artisan optimize &&
+        echo "\n--------------- docker exec -it $2 php artisan migrate ---------------" &&
+        docker exec -it $2 php artisan migrate
+    else
+        echo "\n--------------- php artisan optimize ---------------" &&
+        php artisan optimize &&
+        echo "\n--------------- php migrate ---------------" &&
+        php artisan migrate
+    fi
 }
 
+release-from-develop(){
+    if [ -n "$1" ]; then
+        echo "\n--------------- git stash ---------------" &&
+        git stash &&
+        echo "\n--------------- git stash drop ---------------" &&
+        git stash drop &&
+        echo "\n--------------- git checkout -f develop ---------------" &&
+        git checkout -f develop &&
+        echo "\n--------------- git pull ---------------" &&
+        git pull &&
+        echo "\n--------------- git checkout -b release/$@ ---------------" &&
+        git checkout -b release/$@
+        echo "\n--------------- git push --set-upstream origin release/$@ ---------------" &&
+        git push --set-upstream origin release/$@
+    else
+        echo "\n A release number is required";
+    fi
+}

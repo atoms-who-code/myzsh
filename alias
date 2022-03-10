@@ -9,6 +9,8 @@ alias scpv='sudo rsync -r --progress --inplace --verbose'
 alias lss='sudo ls -la'
 alias sysupdate='sudo apt update -y && sudo apt upgrade -y'
 
+alias g-drop="git stash && git stash drop"
+
 alias python='python3'
 
 alias pbcopy='xsel --clipboard --input'

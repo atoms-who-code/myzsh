@@ -8,6 +8,11 @@ if [[ -e ~/.zsh/functions ]]; then
   source ~/.zsh/functions
 fi
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt share_history
+
 export JAVA_HOME="/usr/lib/jvm/default"
 
 export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/lib/snapd/snap/bin:$HOME/.npm-global/bin:/usr/local/share:/opt/homebrew/bin:/opt/local/bin:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/opt/mysql-client/bin"
@@ -15,17 +20,29 @@ export PATH="$PATH:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin/:/var/l
 
 # Load version control information
 autoload -Uz vcs_info
-precmd() { vcs_info }
+# precmd() { vcs_info }
+
+# Exec time
+preexec () {
+  (( $#_elapsed > 1000 )) && set -A _elapsed $_elapsed[-1000,-1]
+  typeset -ig _start=SECONDS
+}
+# precmd() { set -A _elapsed $_elapsed $(( SECONDS-_start )) }
+precmd () {
+  vcs_info
+  (( _start >= 0 )) && set -A _elapsed $_elapsed $(( SECONDS-_start ))
+  _start=-1
+}
 
 # Format the vcs_info_msg_0_ variable
-zstyle ':vcs_info:git:*' formats ' (%b)'
+zstyle ':vcs_info:git:*' formats ' [%b]'
 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 
 # export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f${vcs_info_msg_0_} %% '
 export PROMPT='%F{red}[%f%F{green}%n@%m%f %F{blue}%~%f%F{red}]%f %% '
-export RPROMPT="%F{240}\${vcs_info_msg_0_}"
+export RPROMPT="%F{240}\${vcs_info_msg_0_}"'%F{yellow}($_elapsed[-1]s)%f'
 
 export CASE_SENSITIVE="false"
 

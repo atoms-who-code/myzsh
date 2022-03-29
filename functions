@@ -205,7 +205,7 @@ release-from-develop(){
         echo "\n--------------- git stash ---------------" &&
         git stash &&
         echo "\n--------------- git stash drop ---------------" &&
-        git stash drop &&
+        git stash drop;
         echo "\n--------------- git checkout -f develop ---------------" &&
         git checkout -f develop &&
         echo "\n--------------- git pull ---------------" &&

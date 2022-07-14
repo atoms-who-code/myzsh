@@ -50,7 +50,7 @@ function dock-clean(){
     docker network prune -f
 
     if [ "$1" = "all" ]; then
-        docker rmi $(docker images -a -q)
+        docker rmi -f $(docker images -a -q)
     fi
 }
 

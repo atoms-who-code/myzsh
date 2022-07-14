@@ -33,9 +33,9 @@ alias krestart="kquitapp5 plasmashell && kstart5 plasmashell"
 
 alias setclip="xclip -sel c < "
 
-failpass='faillock --user $USER --reset'
+alias failpass='faillock --user $USER --reset'
 
-setPerm='sudo chmod -R u+rwX,go+rX,go-w '
+alias setPerm='sudo chmod -R u+rwX,go+rX,go-w '
 
 alias ubu-serv='qemu-system-aarch64 \
     -accel hvf \
@@ -53,3 +53,6 @@ alias ubu-serv='qemu-system-aarch64 \
 
 alias client-prod-tunnel="ssh -NTf -L 3317:127.0.0.1:3306 -i ~/.ssh/production-bbm-secure.pem ubuntu@ec2-3-68-228-204.eu-central-1.compute.amazonaws.com"
 
+alias mt5="/usr/bin/wine '/home/d_pereda/.wine/drive_c/Program Files/BlackBull Markets MT5/terminal64.exe'"
+
+alias allowNodePort="sudo setcap 'cap_net_bind_service=+ep' `which node`"
